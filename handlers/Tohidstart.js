@@ -34,7 +34,27 @@ const TohidStartHandler = {
       console.error('❌ Tohid User Save Error:', error);
     }
 
+    const banner = `
+╔═══════════════════════════●●►
+┃◈├•──────────●●►
+┃◈├ ╔══╗╔╗╔╗╔╗──╔══╦╗
+┃◈├ ╚╗╔╩╣╚╬╬╝╠══╣╔╗╠╣
+┃◈├ ─║║╬║║║║╬╠══╣╠╣║║
+┃◈├ ─╚╩═╩╩╩╩═╝──╚╝╚╩╝
+┃◈├───★─☆──♪♪──❍
+┃◈├• TOHID AI QUIZ BOT v3.0
+┃◈├───★─☆──♪♪─❍
+┃◈├• 🤖 Heroku Edition
+┃◈├• 👨💻 Created by: Tohid
+┃◈├• 🌐 tohidgame.vercel.app
+┃◈├• 🚀 Deployed on: Heroku
+┃◈├•──────────●●►
+╚═══════════════════════════●●►
+`;
+
     const welcomeMessage = `
+${banner}
+
 🤖 *Welcome to ${config.BOT_NAME}!*
 
 👋 *Hello ${firstName}!* I'm *Tohid AI*, your intelligent quiz companion created by *${config.OWNER_NAME}*.
@@ -59,11 +79,45 @@ ${config.CATEGORIES.map(c => `${c.icon} ${c.name}`).join(' | ')}
 *Let's test your knowledge!* 🚀
 `;
 
-    await ctx.replyWithMarkdown(welcomeMessage, TohidKeyboards.mainMenu());
+    const profilePicUrl = 'https://i.ibb.co/gMQ3xkwG/profile-pic.jpg';
+    
+    try {
+      await ctx.replyWithPhoto(
+        profilePicUrl,
+        {
+          caption: welcomeMessage,
+          parse_mode: 'Markdown',
+          ...TohidKeyboards.mainMenu()
+        }
+      );
+    } catch (photoError) {
+      console.error('❌ Photo send error, sending text only:', photoError);
+      await ctx.replyWithMarkdown(welcomeMessage, TohidKeyboards.mainMenu());
+    }
   },
 
   async handleAbout(ctx) {
+    const banner = `
+╔═══════════════════════════●●►
+┃◈├•──────────●●►
+┃◈├ ╔══╗╔╗╔╗╔╗──╔══╦╗
+┃◈├ ╚╗╔╩╣╚╬╬╝╠══╣╔╗╠╣
+┃◈├ ─║║╬║║║║╬╠══╣╠╣║║
+┃◈├ ─╚╩═╩╩╩╩═╝──╚╝╚╩╝
+┃◈├───★─☆──♪♪──❍
+┃◈├• TOHID AI QUIZ BOT v3.0
+┃◈├───★─☆──♪♪─❍
+┃◈├• 🤖 Heroku Edition
+┃◈├• 👨💻 Created by: Tohid
+┃◈├• 🌐 tohidgame.vercel.app
+┃◈├• 🚀 Deployed on: Heroku
+┃◈├•──────────●●►
+╚═══════════════════════════●●►
+`;
+
     const aboutMessage = `
+${banner}
+
 ⭐ *About ${config.BOT_NAME}*
 
 🤖 *Bot Name:* ${config.BOT_NAME}
@@ -90,7 +144,21 @@ To make learning fun and engaging through intelligent quizzes powered by AI tech
 🔗 *Connect with Tohid:*
 `;
 
-    await ctx.replyWithMarkdown(aboutMessage, TohidKeyboards.promotion());
+    const profilePicUrl = 'https://i.ibb.co/gMQ3xkwG/profile-pic.jpg';
+    
+    try {
+      await ctx.replyWithPhoto(
+        profilePicUrl,
+        {
+          caption: aboutMessage,
+          parse_mode: 'Markdown',
+          ...TohidKeyboards.promotion()
+        }
+      );
+    } catch (photoError) {
+      console.error('❌ About photo send error:', photoError);
+      await ctx.replyWithMarkdown(aboutMessage, TohidKeyboards.promotion());
+    }
   },
 
   async handleStats(ctx) {
@@ -109,7 +177,27 @@ To make learning fun and engaging through intelligent quizzes powered by AI tech
         ? ((user.correctAnswers / totalAnswers) * 100).toFixed(1)
         : 0;
 
+      const banner = `
+╔═══════════════════════════●●►
+┃◈├•──────────●●►
+┃◈├ ╔══╗╔╗╔╗╔╗──╔══╦╗
+┃◈├ ╚╗╔╩╣╚╬╬╝╠══╣╔╗╠╣
+┃◈├ ─║║╬║║║║╬╠══╣╠╣║║
+┃◈├ ─╚╩═╩╩╩╩═╝──╚╝╚╩╝
+┃◈├───★─☆──♪♪──❍
+┃◈├• TOHID AI QUIZ BOT v3.0
+┃◈├───★─☆──♪♪─❍
+┃◈├• 🤖 Heroku Edition
+┃◈├• 👨💻 Created by: Tohid
+┃◈├• 🌐 tohidgame.vercel.app
+┃◈├• 🚀 Deployed on: Heroku
+┃◈├•──────────●●►
+╚═══════════════════════════●●►
+`;
+
       const statsMessage = `
+${banner}
+
 📊 *Your Tohid AI Stats*
 
 👤 *Profile:*
@@ -136,7 +224,21 @@ To make learning fun and engaging through intelligent quizzes powered by AI tech
 *Keep playing to improve your stats!* 🚀
 `;
 
-      await ctx.replyWithMarkdown(statsMessage, TohidKeyboards.mainMenu());
+      const profilePicUrl = 'https://i.ibb.co/gMQ3xkwG/profile-pic.jpg';
+      
+      try {
+        await ctx.replyWithPhoto(
+          profilePicUrl,
+          {
+            caption: statsMessage,
+            parse_mode: 'Markdown',
+            ...TohidKeyboards.mainMenu()
+          }
+        );
+      } catch (photoError) {
+        console.error('❌ Stats photo send error:', photoError);
+        await ctx.replyWithMarkdown(statsMessage, TohidKeyboards.mainMenu());
+      }
     } catch (error) {
       console.error('❌ Tohid Stats Error:', error);
       await ctx.reply('❌ Error fetching stats. Please try again.');

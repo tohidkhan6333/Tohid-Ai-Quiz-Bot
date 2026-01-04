@@ -22,12 +22,28 @@ const bot = new Telegraf(config.BOT_TOKEN);
 // Use session middleware
 bot.use(session());
 
-// Heroku Health Check Endpoint
+// Express app setup - Heroku Health Check Endpoint
 const express = require('express');
 const app = express();
-const PORT = config.PORT;
+const PORT = config.PORT || 3000;
 
-app.get('/', (req, res) => {
+// Root endpoint
+app.get('/', (req, res) => res.send('Bot is running!'));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    bot: 'Tohid AI Quiz Bot',
+    environment: process.env.NODE_ENV,
+    uptime: process.uptime(),
+    memory: process.memoryUsage()
+  });
+});
+
+// Bot status endpoint
+app.get('/status', (req, res) => {
   res.json({
     status: 'online',
     bot: config.BOT_NAME,
@@ -36,15 +52,6 @@ app.get('/', (req, res) => {
     uptime: process.uptime(),
     memory: process.memoryUsage(),
     environment: process.env.NODE_ENV || 'development'
-  });
-});
-
-app.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    bot: 'Tohid AI Quiz Bot',
-    environment: process.env.NODE_ENV
   });
 });
 
@@ -220,7 +227,7 @@ async function startBot() {
     setupBotCommands();
     
     // Start web server for Heroku health checks
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`✅ Web server listening on port ${PORT}`);
     });
     

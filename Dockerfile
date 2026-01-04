@@ -1,20 +1,21 @@
 FROM node:18-alpine
 
-# App directory
+# App directory create karo
 WORKDIR /app
 
-# Copy dependency files first (cache friendly)
-COPY package.json package-lock.json ./
+# Sirf package.json copy karo (lockfile hata di hai humne)
+COPY package.json ./
 
-# Install ONLY production deps
-RUN npm ci --omit=dev
+# Dependencies install karo (npm ci ki jagah npm install)
+RUN npm install --omit=dev
 
-# Copy rest of the app
+# Baaki code copy karo
 COPY . .
 
-# Non-root user (security best practice)
+# Security: Non-root user create karo
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-# Start bot
+# Bot start karo
 CMD ["node", "index.js"]
+

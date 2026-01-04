@@ -2,7 +2,7 @@ Tohid-AI Quiz Bot 🤖
 
 <div align="center">
 
-<img src="https://d.uguu.se/gVOjhEwP.jpg" alt="Tohid-AI Quiz Bot" width="600" />
+<img src="https://ibb.co/gMQ3xkwG" alt="Tohid-AI Quiz Bot" width="600" />
 
 </div>
 

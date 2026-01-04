@@ -2,11 +2,9 @@ Tohid-AI Quiz Bot 🤖
 
 <div align="center">
 
-https://img.shields.io/badge/Tohid-AI%20Quiz%20Bot-blue
-https://img.shields.io/badge/Version-3.0.0-green
-https://img.shields.io/badge/Node.js-18.x-brightgreen
-https://img.shields.io/badge/MongoDB-6.x-green
-https://img.shields.io/badge/License-MIT-yellow
+<img src="https://d.uguu.se/gVOjhEwP.jpg" alt="Tohid-AI Quiz Bot" width="600" />
+
+</div>
 
 An AI-powered Telegram Quiz Bot created by Tohid
 
@@ -76,17 +74,10 @@ An AI-powered Telegram Quiz Bot created by Tohid
 
 🎯 Demo
 
-📸 Screenshots
-
-Main Menu Quiz Session Leaderboard
-https://via.placeholder.com/300x200/3498db/ffffff?text=Main+Menu https://via.placeholder.com/300x200/2ecc71/ffffff?text=Quiz+Session https://via.placeholder.com/300x200/e74c3c/ffffff?text=Leaderboard
-
-Categories Results Stats
-https://via.placeholder.com/300x200/9b59b6/ffffff?text=Categories https://via.placeholder.com/300x200/f1c40f/000000?text=Results https://via.placeholder.com/300x200/1abc9c/ffffff?text=Stats
 
 🎥 Video Demo
 
-https://img.youtube.com/vi/VIDEO_ID/0.jpg
+https://youtube.com/@tohidkhan_6332
 
 ---
 
@@ -665,8 +656,11 @@ SOFTWARE.
 
 Built with ❤️ by Tohid
 
-https://img.shields.io/badge/Follow-Tohid-blue?style=for-the-badge&logo=telegram
-https://img.shields.io/badge/Website-tohidgame.vercel.app-green?style=for-the-badge
-https://img.shields.io/badge/WhatsApp-Contact%20Tohid-brightgreen?style=for-the-badge&logo=whatsapp
+
+<div align="center">
+
+[![Follow on Telegram](https://img.shields.io/badge/Follow-Tohid-blue?style=for-the-badge&logo=telegram)](https://t.me/Tohidkhan6332)
+[![Website](https://img.shields.io/badge/Website-tohidgame.vercel.app-green?style=for-the-badge)](https://tohidgame.vercel.app)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Contact%20Tohid-brightgreen?style=for-the-badge&logo=whatsapp)](https://wa.me/917849917350)
 
 </div>

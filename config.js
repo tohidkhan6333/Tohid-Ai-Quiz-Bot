@@ -1,5 +1,5 @@
 /**
- * Tohid AI Quiz Bot Mr Tohid Configuration
+ * Tohid AI Quiz Bot Configuration
  * Optimized for Heroku Deployment
  */
 require('dotenv').config();
@@ -101,7 +101,7 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
 
 // Heroku Specific Signature
 TohidConfig.SIGNATURE = `
-╔═══════════════════════════●●►
+╔════════════════════●●►
 ┃◈├•──────────●●►
 ┃◈├ ╔═╦═╗───╔══╗╔╗╔╗╔╗
 ┃◈├ ║║║║╠╦╦═╩╗╔╩╣╚╬╬╝║
@@ -115,7 +115,7 @@ TohidConfig.SIGNATURE = `
 ┃◈├• 🌐 tohidgame.vercel.app
 ┃◈├• 🚀 Deployed on: Heroku
 ┃◈├•──────────●●►
-╚═══════════════════════════●●►
+╚════════════════════●●►
 `;
 
 module.exports = TohidConfig;

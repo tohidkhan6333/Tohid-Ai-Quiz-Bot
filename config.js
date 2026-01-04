@@ -1,5 +1,5 @@
 /**
- * Tohid AI Quiz Bot Configuration
+ * Tohid AI Quiz Bot Mr Tohid Configuration
  * Optimized for Heroku Deployment
  */
 require('dotenv').config();

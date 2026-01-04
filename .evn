@@ -1,0 +1,35 @@
+# Tohid AI Quiz Bot - Environment Variables
+# Copy this file to .env and fill in your values
+
+# ===== REQUIRED VARIABLES =====
+# Telegram Bot Token from @BotFather
+BOT_TOKEN=5812648906:AAH3dlK3nL36sxpN7_8xcpmwlk-Dg1IJpkg
+
+# MongoDB Connection String
+# Get from MongoDB Atlas: https://cloud.mongodb.com
+MONGODB_URI=mongodb+srv://tohid-ai-quiz-bot:tohid-ai-quiz-bot@cluster0.idbzeke.mongodb.net/tohid_ai_quiz?retryWrites=true&w=majority&appName=Cluster0
+
+# ===== HEROKU SPECIFIC =====
+NODE_ENV=production
+PORT=3000
+LOG_LEVEL=info
+
+# ===== OPTIONAL VARIABLES =====
+# Application Settings
+APP_NAME=Tohid AI Quiz Bot
+WEBHOOK_DOMAIN=your-app-name.herokuapp.com
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=900000
+RATE_LIMIT_MAX=100
+
+# Bot Settings
+MAX_QUIZZES_PER_DAY=25
+MAX_QUIZ_TIME=300
+QUESTION_TIMEOUT=30
+
+# ===== FOR LOCAL DEVELOPMENT =====
+# Uncomment for local testing
+# NODE_ENV=development
+# LOG_LEVEL=debug
+# MONGODB_URI=mongodb://localhost:27017/tohid_ai_quiz

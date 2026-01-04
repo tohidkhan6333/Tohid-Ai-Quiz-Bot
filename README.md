@@ -1,10 +1,19 @@
+#### MULTI DEVICE WHATSAPP BOT TOHID AI | STILL MANY HIDDEN COMMANDS
+
+<p align="center">  
+  <a href="https://youtube.com/@tohidkhan_6332">
+    <img alt="TOHID" src="https://d.uguu.se/gVOjhEwP.jpg">
+  </a>
+</p>
+<p align="center">
+<a href="https://github.com/Tohidkhan6332?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/Tohidkhan6332?label=Followers&style=social"></a>
+<a href="https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/Tohidkhan6332/Tohid-Ai-Quiz-Bot?&style=social"></a>
+<a href="https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot/network/members"><img title="Fork" src="https://img.shields.io/github/forks/Tohidkhan6332/TTohid-Ai-Quiz-Bot?style=social"></a>
+<a href="https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Tohidkhan6332/Tohid-Ai-Quiz-Bot?label=Watching&style=social"></a>
+</p>
+<p align="center">
+
 Tohid-AI Quiz Bot 🤖
-
-<div align="center">
-
-<img src="https://ibb.co/gMQ3xkwG" alt="Tohid-AI Quiz Bot" width="600" />
-
-</div>
 
 An AI-powered Telegram Quiz Bot created by Tohid
 

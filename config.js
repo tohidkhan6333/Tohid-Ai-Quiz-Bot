@@ -101,13 +101,21 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
 
 // Heroku Specific Signature
 TohidConfig.SIGNATURE = `
-╔══════════════════════════════════════╗
-║      TOHID AI QUIZ BOT v3.0          ║
-║        🤖 Heroku Edition              ║
-║    👨💻 Created by: Tohid            ║
-║    🌐 tohidgame.vercel.app           ║
-║    🚀 Deployed on: Heroku            ║
-╚══════════════════════════════════════╝
+╔═══════════════════════════●●►
+┃◈├•──────────●●►
+┃◈├ ╔═╦═╗───╔══╗╔╗╔╗╔╗
+┃◈├ ║║║║╠╦╦═╩╗╔╩╣╚╬╬╝║
+┃◈├ ║║║║║╔╩══╣║╬║║║║╬║
+┃◈├ ╚╩═╩╩╝───╚╩═╩╩╩╩═╝
+┃◈├───★─☆──♪♪──❍
+┃◈├• TOHID AI QUIZ BOT v3.0
+┃◈├───★─☆──♪♪─❍
+┃◈├• 🤖 Heroku Edition
+┃◈├• 👨💻 Created by: Tohid
+┃◈├• 🌐 tohidgame.vercel.app
+┃◈├• 🚀 Deployed on: Heroku
+┃◈├•──────────●●►
+╚═══════════════════════════●●►
 `;
 
 module.exports = TohidConfig;

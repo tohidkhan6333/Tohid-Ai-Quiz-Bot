@@ -1,21 +1,20 @@
 FROM node:18-alpine
 
-# App directory create karo
+# App directory
 WORKDIR /app
 
-# Sirf package.json copy karo (lockfile hata di hai humne)
+# Copy ONLY package.json (No lockfile)
 COPY package.json ./
 
-# Dependencies install karo (npm ci ki jagah npm install)
+# Install dependencies (ignoring lockfile)
 RUN npm install --omit=dev
 
-# Baaki code copy karo
+# Copy rest of the app
 COPY . .
 
-# Security: Non-root user create karo
+# Non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-# Bot start karo
+# Start bot
 CMD ["node", "index.js"]
-

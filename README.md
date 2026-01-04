@@ -109,7 +109,7 @@ You need to set up the following Environment Variables (Secrets) on your deploym
 | Variable | Description |
 | :--- | :--- |
 | `BOT_TOKEN` | Get this from [@BotFather](https://t.me/BotFather) |
-| `MONGO_URL` | Your MongoDB Connection String |
+| `MONGO_URL` | Your MongoDB Connection String [@mongoDB](https://account.mongodb.com) |
 | `OWNER_ID` | Your Telegram User ID |
 
 ---

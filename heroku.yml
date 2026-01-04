@@ -1,0 +1,18 @@
+# heroku.yml
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: node index.js
+
+# Optional: Release phase (for migrations, etc.)
+# release:
+#   image: web
+#   command:
+#     - echo "Running release tasks..."
+
+# Optional: Addons (if needed)
+# addons:
+#   - plan: mongolab:sandbox
+#     as: MONGODB

@@ -92,17 +92,58 @@ Prerequisites
 One-Click Deployment
 
 
-# Tohid AI Quiz Bot - Heroku Deployment
+# 🤖 Tohid AI Quiz Bot
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot)
+A simple and efficient Telegram Quiz Bot built with Node.js and MongoDB.
 
-## 🚀 Quick Heroku Deployment
+## 🌟 Features
+- AI-based Quiz Generation
+- MongoDB Database integration
+- User-friendly interface
+- Fast and Secure
 
-### Method 1: One-Click Deploy (Recommended)
-Click the "Deploy to Heroku" button above and fill in:
-1. **App Name**: `tohid-ai-quiz-bot` (or choose your own)
-2. **BOT_TOKEN**: Your Telegram bot token from @BotFather
-3. **MONGODB_URI**: MongoDB Atlas connection string
+## 🛠️ Configuration (Environment Variables)
+
+You need to set up the following Environment Variables (Secrets) on your deployment platform:
+
+| Variable | Description |
+| :--- | :--- |
+| `BOT_TOKEN` | Get this from [@BotFather](https://t.me/BotFather) |
+| `MONGO_URL` | Your MongoDB Connection String |
+| `OWNER_ID` | Your Telegram User ID |
+
+---
+
+## 🚀 Deployment Methods
+
+### Method 1: Heroku (Paid)
+Note: Heroku no longer offers a free tier. You need a credit card.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot)
+
+### Method 2: Render (Free/Paid)
+Render is a good alternative. Select "Web Service" or "Background Worker".
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com)
+
+### Method 3: Railway (Trial/Paid)
+Railway offers a trial period and is very developer-friendly.
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new)
+
+### Method 4: Replit (Free/Hacker)
+You can import this repo to Replit directly.
+
+[Run on Replit](https://replit.com/github/Tohidkhan6332/Tohid-Ai-Quiz-Bot)
+
+---
+
+## 💻 Local Installation
+
+1. **Clone the repo:**
+   ```bash
+   git clone [https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot.git](https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot.git)
+
 
 ### Method 2: Manual Deployment using Heroku CLI
 

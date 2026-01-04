@@ -1,0 +1,324 @@
+# Replit Configuration for Tohid AI Quiz Bot
+# Version: 1.0
+# Author: Tohid
+
+# Runtime configuration
+run:
+  # Start command for the bot
+  command: "npm start"
+  
+  # Environment variables will be set in Secrets tab
+  env:
+    # Bot credentials
+    BOT_TOKEN: "$BOT_TOKEN"
+    MONGO_URI: "$MONGO_URI"
+    
+    # Bot configuration
+    BOT_NAME: "Tohid AI Quiz Bot"
+    OWNER_ID: "$OWNER_ID"
+    OWNER_NAME: "Tohid"
+    OWNER_USERNAME: "@Tohidkhan6332"
+    OWNER_WHATSAPP_NUMBER: "+917849917350"
+    QUIZ_WEB_LINK: "https://tohidgame.vercel.app"
+    
+    # API configuration
+    OPEN_TDB_API: "https://opentdb.com/api.php"
+    AI_API_KEY: "$AI_API_KEY"
+    
+    # Server configuration
+    PORT: "3000"
+    NODE_ENV: "production"
+    
+    # Quiz settings
+    MAX_QUESTIONS_PER_QUIZ: "10"
+    TIME_PER_QUESTION: "30"
+    DAILY_QUIZ_LIMIT: "50"
+  
+  # Enable internet access
+  internet: true
+  
+  # Language
+  language: "nodejs"
+  
+  # Always-on configuration
+  alwaysOn: true
+  
+  # Auto-start on boot
+  onBoot: true
+
+# Build configuration
+build:
+  # Install dependencies
+  command: "npm install"
+  
+  # Clear cache
+  clearCache: true
+  
+  # Auto-build on changes
+  autoBuild: true
+
+# Features configuration
+features:
+  # Enable process management
+  processManagement: true
+  
+  # Enable file watcher
+  fileWatcher: true
+  
+  # Enable Git integration
+  git: true
+  
+  # Enable port forwarding
+  portForwarding: true
+  
+  # Enable health checks
+  healthChecks: true
+
+# Health check configuration
+health:
+  # HTTP health endpoint
+  http:
+    path: "/health"
+    port: 3000
+  
+  # Process health check
+  process:
+    interval: 30
+    timeout: 10
+
+# Port configuration
+ports:
+  - port: 3000
+    description: "HTTP Server"
+    enable: true
+    
+  - port: 8080
+    description: "Web Interface"
+    enable: false
+
+# Nix packages (if needed)
+nix:
+  channels: ["nixpkgs-unstable"]
+  packages:
+    - nodejs_20
+    - mongodb-tools
+    - git
+    - curl
+    - wget
+
+# Debug configuration
+debug:
+  # Enable debugging
+  enabled: false
+  
+  # Debug port
+  port: 9229
+  
+  # Break on start
+  break: false
+
+# Notifications
+notifications:
+  # Enable build notifications
+  build: true
+  
+  # Enable deploy notifications
+  deploy: true
+  
+  # Enable error notifications
+  error: true
+
+# Deploy configuration
+deploy:
+  # Auto-deploy on push
+  auto: true
+  
+  # Branch to deploy from
+  branch: "main"
+  
+  # Deploy command
+  command: "git pull && npm ci && npm start"
+
+# Backup configuration
+backup:
+  # Enable auto-backup
+  enabled: true
+  
+  # Backup schedule (cron format)
+  schedule: "0 2 * * *"
+  
+  # Backup retention days
+  retention: 7
+
+# Resource limits
+resources:
+  # CPU limit (in cores)
+  cpu: 2
+  
+  # Memory limit (in MB)
+  memory: 1024
+  
+  # Disk limit (in MB)
+  disk: 512
+  
+  # Network limit
+  network:
+    inbound: 100
+    outbound: 100
+
+# Security
+security:
+  # Enable firewall
+  firewall: true
+  
+  # Auto-update dependencies
+  autoUpdate: true
+  
+  # Vulnerability scanning
+  scan:
+    enabled: true
+    schedule: "0 0 * * 0"
+
+# Monitoring
+monitoring:
+  # Enable logs
+  logs: true
+  
+  # Enable metrics
+  metrics: true
+  
+  # Enable alerts
+  alerts: true
+  
+  # Uptime monitoring
+  uptime:
+    enabled: true
+    checkInterval: 60
+
+# Custom commands for Replit shell
+shell:
+  # Start development server
+  dev: "npm run dev"
+  
+  # Run tests
+  test: "npm test"
+  
+  # Check linting
+  lint: "npm run lint"
+  
+  # Database backup
+  backup-db: "mongodump --uri=$MONGO_URI --out=./backups/db-$(date +%Y%m%d-%H%M%S)"
+  
+  # Clear logs
+  clear-logs: "rm -rf logs/*.log"
+  
+  # View bot logs
+  logs-bot: "tail -f bot.log"
+  
+  # Restart bot
+  restart: "pkill -f node && npm start"
+  
+  # Update bot
+  update: "git pull && npm ci && pm2 restart all"
+  
+  # Stats
+  stats: "pm2 status"
+
+# Environment specific configurations
+environments:
+  development:
+    NODE_ENV: "development"
+    DEBUG: "bot:*"
+    
+  production:
+    NODE_ENV: "production"
+    DEBUG: ""
+    
+  testing:
+    NODE_ENV: "test"
+    DEBUG: "bot:test"
+
+# Bot specific commands
+bot:
+  # Maintenance mode
+  maintenance:
+    enable: "touch maintenance.lock"
+    disable: "rm -f maintenance.lock"
+    
+  # Clear user cache
+  clear-cache: "node scripts/clearCache.js"
+  
+  # Send broadcast
+  broadcast: "node scripts/broadcast.js"
+  
+  # Update questions
+  update-questions: "node scripts/updateQuestions.js"
+  
+  # Backup data
+  backup-data: "node scripts/backupData.js"
+
+# Scripts to run on events
+events:
+  onStart:
+    - "echo '🚀 Starting Tohid AI Quiz Bot...'"
+    - "date >> logs/startup.log"
+    
+  onStop:
+    - "echo '🛑 Stopping Tohid AI Quiz Bot...'"
+    - "date >> logs/shutdown.log"
+    
+  onError:
+    - "echo '❌ Error occurred in Tohid AI Quiz Bot'"
+    - "date >> logs/error.log"
+
+# Web preview configuration
+web:
+  # Disable web preview (for Telegram bot)
+  preview: false
+  
+  # Custom 404 page
+  errorPages:
+    404: "/404.html"
+    
+  # Headers
+  headers:
+    X-Powered-By: "Tohid AI Quiz Bot"
+    X-Content-Type-Options: "nosniff"
+    X-Frame-Options: "DENY"
+
+# Database configuration (for Replit Database)
+database:
+  # Use MongoDB Atlas (configured via env)
+  enabled: false
+  
+  # Local database for development
+  local:
+    enabled: false
+    type: "mongodb"
+    port: 27017
+
+# File structure
+files:
+  # Protected files (cannot be deleted/modified)
+  protected:
+    - ".replit"
+    - "replit.nix"
+    - "package.json"
+    - "package-lock.json"
+    - "ecosystem.config.js"
+    
+  # Auto-generated files to ignore
+  ignore:
+    - "node_modules/*"
+    - "logs/*"
+    - "backups/*"
+    - "*.log"
+    - ".env.local"
+    - ".git/*"
+
+# Version information
+version: "3.0.0"
+maintainer: "Tohid"
+support: "tohidgame.vercel.app"
+repository: "https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot"
+license: "MIT"

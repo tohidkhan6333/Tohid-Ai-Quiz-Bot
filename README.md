@@ -1,4 +1,4 @@
-#### MULTI DEVICE WHATSAPP BOT TOHID AI | STILL MANY HIDDEN COMMANDS
+#### MULTI DEVICE TELEGRAM BOT TOHID AI | STILL MANY HIDDEN COMMANDS
 
 <p align="center">  
   <a href="https://youtube.com/@tohidkhan_6332">

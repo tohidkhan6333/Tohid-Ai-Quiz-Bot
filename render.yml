@@ -1,7 +1,7 @@
-# render.yaml (अगर use करें)
+# render.yaml
 services:
   - type: web
-    name: tohid-quiz-bot
+    name: Tohid-Ai-Quiz-Bot
     env: node
     buildCommand: npm install --production
     startCommand: npm start

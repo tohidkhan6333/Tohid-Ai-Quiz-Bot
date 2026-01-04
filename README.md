@@ -2,7 +2,7 @@
 
 <p align="center">  
   <a href="https://youtube.com/@tohidkhan_6332">
-    <img alt="TOHID" src="https://d.uguu.se/gVOjhEwP.jpg">
+    <img alt="TOHID-AI" src="https://n.uguu.se/BXdoBUjw.jpg">
   </a>
 </p>
 <p align="center">

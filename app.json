@@ -1,0 +1,60 @@
+{
+  "name": "Tohid-Ai-Quiz-Bot",
+  "description": "AI-Powered Telegram Quiz Bot by Tohid",
+  "repository": "https://github.com/Tohidkhan6332/Tohid-Ai-Quiz-Bot",
+  "logo": "https://d.uguu.se/gVOjhEwP.jpg",
+  "keywords": [
+    "telegram",
+    "quiz",
+    "bot",
+    "ai",
+    "tohid",
+    "mongodb",
+    "education",
+    "game"
+  ],
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your Telegram Bot Token from @BotFather",
+      "value": "",
+      "required": true
+    },
+    "MONGODB_URI": {
+      "description": "MongoDB Connection URI (Get from MongoDB Atlas)",
+      "value": "",
+      "required": true
+    },
+    "NODE_ENV": {
+      "description": "Environment (production for Heroku)",
+      "value": "production",
+      "required": false
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level (info, debug, error)",
+      "value": "info",
+      "required": false
+    },
+    "PORT": {
+      "description": "Port for web server",
+      "value": "3000",
+      "required": false
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "worker": {
+      "quantity": 0,
+      "size": "free"
+    }
+  },
+  "addons": [],
+  "stack": "heroku-22"
+}

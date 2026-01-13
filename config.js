@@ -26,7 +26,7 @@ const TohidConfig = {
   API_LINK: "https://opentdb.com/api.php",
   
   // MongoDB Configuration
-MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-ai-quiz-bot@cluster0.idbzeke.mongodb.net/tohid_ai_quiz?retryWrites=true&w=majority&appName=Cluster0",
+  MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-ai-quiz-bot@cluster0.idbzeke.mongodb.net/tohid_ai_quiz?retryWrites=true&w=majority&appName=Cluster0",
   
   // Heroku Settings
   IS_HEROKU: process.env.NODE_ENV === 'production',
@@ -45,7 +45,8 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
     'Art': 25,
     'Technology': 18,
     'Animals': 27,
-    'Space': 17
+    'Space': 17,
+    'General Knowledge': 9
   },
   
   // Categories with Icons
@@ -56,11 +57,12 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
     { name: 'Sports', icon: '⚽', id: 21 },
     { name: 'Movies', icon: '🎬', id: 11 },
     { name: 'Music', icon: '🎵', id: 12 },
-    { name: 'Literature', icon: '📖', id: 10 },
+    { name: 'Literature', icon: '📚', id: 10 },
     { name: 'Art', icon: '🎨', id: 25 },
     { name: 'Technology', icon: '💻', id: 18 },
-    { name: 'Animals', icon: '🦁', id: 27 },
-    { name: 'Space', icon: '🚀', id: 17 }
+    { name: 'Animals', icon: '🐶', id: 27 },
+    { name: 'Space', icon: '🚀', id: 17 },
+    { name: 'General Knowledge', icon: '🧠', id: 9 }
   ],
   
   // Difficulty Levels
@@ -84,6 +86,29 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
     PERFECT_QUIZ_BONUS: 50
   },
   
+  // Group Settings
+  GROUP_SETTINGS: {
+    ENABLE_GROUP_QUIZ: true,
+    MAX_GROUP_MEMBERS: 100,
+    GROUP_QUIZ_TIMEOUT: 30, // seconds per question
+    MIN_GROUP_SIZE: 2,
+    GROUP_REWARD_MULTIPLIER: 1.5,
+    ADMIN_USER_IDS: [1975572115], // Owner ID and other admins
+    GROUP_CHALLENGE_DURATION: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+    MAX_CHALLENGES_PER_DAY: 5
+  },
+  
+  // Admin Controls
+  ADMIN_SETTINGS: {
+    ENABLE_QUIZ: true,
+    MAINTENANCE_MODE: false,
+    MAINTENANCE_MESSAGE: "🚧 Bot is under maintenance. Please try again later.",
+    MAX_QUIZZES_PER_USER_DAY: 25,
+    SPAM_PROTECTION_DELAY: 5, // seconds between commands
+    ADMIN_BYPASS_LIMITS: true,
+    ALLOWED_GROUPS: [-1001821969607], // Your group ID
+  },
+  
   // Promotion Links
   PROMOTION: {
     WHATSAPP_GROUP: 'https://chat.whatsapp.com/HUEyTVIQ7Ij1gFs6aZkbMk',
@@ -101,12 +126,12 @@ MONGODB_URI: process.env.MONGODB_URI || "mongodb+srv://tohid-ai-quiz-bot:tohid-a
 
 // Heroku Specific Signature
 TohidConfig.SIGNATURE = `
-╔════════════════════●●►
+╔═════════════════●●►
 ┃◈├•──────────●●►
-┃◈├ ╔═╦═╗───╔══╗╔╗╔╗╔╗
-┃◈├ ║║║║╠╦╦═╩╗╔╩╣╚╬╬╝║
-┃◈├ ║║║║║╔╩══╣║╬║║║║╬║
-┃◈├ ╚╩═╩╩╝───╚╩═╩╩╩╩═╝
+┃◈├ ╔══╗╔╗╔╗╔╗──╔══╦╗
+┃◈├ ╚╗╔╩╣╚╬╬╝╠══╣╔╗╠╣
+┃◈├ ─║║╬║║║║╬╠══╣╠╣║║
+┃◈├ ─╚╩═╩╩╩╩═╝──╚╝╚╩╝
 ┃◈├───★─☆──♪♪──❍
 ┃◈├• TOHID AI QUIZ BOT v3.0
 ┃◈├───★─☆──♪♪─❍
@@ -115,7 +140,7 @@ TohidConfig.SIGNATURE = `
 ┃◈├• 🌐 tohidgame.vercel.app
 ┃◈├• 🚀 Deployed on: Heroku
 ┃◈├•──────────●●►
-╚════════════════════●●►
+╚══════════════════●●►
 `;
 
 module.exports = TohidConfig;

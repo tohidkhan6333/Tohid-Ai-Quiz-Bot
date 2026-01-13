@@ -13,6 +13,8 @@ const TohidQuiz = require('./handlers/Tohidquiz');
 const TohidLeaderboard = require('./handlers/Tohidleaderboard');
 const TohidHistory = require('./handlers/Tohidhistory');
 const TohidCallbacks = require('./handlers/Tohidcallbacks');
+const TohidGroup = require('./handlers/Tohidgroup');
+const TohidAdmin = require('./handlers/Tohidadmin');
 
 const TohidKeyboards = require('./utils/Tohidkeyboard');
 
@@ -22,13 +24,16 @@ const bot = new Telegraf(config.BOT_TOKEN);
 // Use session middleware
 bot.use(session());
 
+// Add admin access control middleware
+bot.use((ctx, next) => TohidAdmin.checkAccess(ctx, next));
+
 // Express app setup - Heroku Health Check Endpoint
 const express = require('express');
 const app = express();
 const PORT = config.PORT || 3000;
 
 // Root endpoint
-app.get('/', (req, res) => res.send('Bot is running!'));
+app.get('/', (req, res) => res.send('Tohid AI Quiz Bot is running!'));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -36,6 +41,8 @@ app.get('/health', (req, res) => {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     bot: 'Tohid AI Quiz Bot',
+    version: '3.0.0',
+    features: ['Group Quiz', 'Challenge Mode', 'Admin Controls'],
     environment: process.env.NODE_ENV,
     uptime: process.uptime(),
     memory: process.memoryUsage()
@@ -49,6 +56,11 @@ app.get('/status', (req, res) => {
     bot: config.BOT_NAME,
     version: '3.0.0',
     owner: config.OWNER_NAME,
+    features: {
+      group_quiz: config.GROUP_SETTINGS.ENABLE_GROUP_QUIZ,
+      admin_controls: true,
+      challenge_mode: true
+    },
     uptime: process.uptime(),
     memory: process.memoryUsage(),
     environment: process.env.NODE_ENV || 'development'
@@ -59,9 +71,11 @@ app.get('/status', (req, res) => {
 async function initializeDatabase() {
   try {
     console.log(config.SIGNATURE);
-    console.log('🚀 Initializing Tohid AI Quiz Bot...');
+    console.log('🚀 Initializing Tohid AI Quiz Bot v3.0...');
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🔗 MongoDB: ${config.MONGODB_URI.includes('mongodb+srv') ? 'Atlas' : 'Local'}`);
+    console.log(`👥 Group Features: ${config.GROUP_SETTINGS.ENABLE_GROUP_QUIZ ? '✅ Enabled' : '❌ Disabled'}`);
+    console.log(`🛠️ Admin Controls: ✅ Enabled`);
     
     await TohidConnectDB();
     
@@ -77,6 +91,7 @@ async function initializeDatabase() {
     console.log(`🤖 Bot Name: ${config.BOT_NAME}`);
     console.log(`👨💻 Owner: ${config.OWNER_NAME}`);
     console.log(`🔧 Port: ${PORT}`);
+    console.log(`👥 Allowed Groups: ${config.ADMIN_SETTINGS.ALLOWED_GROUPS.length}`);
     
   } catch (error) {
     console.error('❌ Initialization failed:', error);
@@ -150,10 +165,11 @@ function setupMemoryMonitoring() {
 
 // Bot Commands Setup
 function setupBotCommands() {
-  // Start command
+  // ========== START COMMAND ==========
   bot.start(TohidStart.handleStart);
+  bot.command('help', TohidStart.handleStart);
 
-  // Main menu commands
+  // ========== MAIN MENU COMMANDS ==========
   bot.hears('🎮 Start Tohid Quiz', (ctx) => TohidQuiz.startQuizSelection(ctx));
   bot.hears('🏆 Leaderboard', (ctx) => TohidLeaderboard.showLeaderboard(ctx, 'all'));
   bot.hears('📜 My History', (ctx) => TohidHistory.showHistory(ctx));
@@ -161,14 +177,39 @@ function setupBotCommands() {
   bot.hears('⭐ About Tohid AI', (ctx) => TohidStart.handleAbout(ctx));
   bot.hears('🔗 Connect', (ctx) => ctx.replyWithMarkdown('🔗 *Connect with Tohid:*', TohidKeyboards.promotion()));
 
-  // Text commands
-  bot.command('help', TohidStart.handleStart);
+  // ========== GROUP QUIZ COMMANDS ==========
+  bot.command('groupquiz', (ctx) => TohidGroup.startGroupQuiz(ctx));
+  bot.command('stopgroupquiz', (ctx) => TohidGroup.stopGroupQuiz(ctx));
+  bot.command('grouprank', (ctx) => TohidGroup.showGroupRank(ctx));
+  
+  // ========== CHALLENGE COMMANDS ==========
+  bot.command('challenge', (ctx) => TohidGroup.startChallenge(ctx));
+  bot.command('challengerank', (ctx) => TohidGroup.showGroupRank(ctx));
+
+  // ========== ADMIN COMMANDS ==========
+  bot.command('enablebot', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('disablebot', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('maintenance', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('adminstats', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('resetlimits', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('broadcast', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('listusers', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('blockuser', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('unblockuser', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('addgroup', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('removegroup', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('clearcache', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+  bot.command('helpadmin', (ctx) => TohidAdmin.handleAdminCommand(ctx));
+
+  // ========== TEXT COMMANDS ==========
   bot.command('start', TohidStart.handleStart);
   bot.command('stats', TohidStart.handleStats);
   bot.command('leaderboard', (ctx) => TohidLeaderboard.showLeaderboard(ctx, 'all'));
   bot.command('history', TohidHistory.showHistory);
   bot.command('about', TohidStart.handleAbout);
-  bot.command('ping', (ctx) => ctx.reply('🏓 Pong! Bot is alive!'));
+  
+  bot.command('ping', (ctx) => ctx.reply('🏓 Pong! Tohid AI Bot is alive!'));
+  
   bot.command('status', (ctx) => {
     const memory = process.memoryUsage();
     const uptime = process.uptime();
@@ -176,21 +217,33 @@ function setupBotCommands() {
     const minutes = Math.floor((uptime % 3600) / 60);
     const seconds = Math.floor(uptime % 60);
     
-    ctx.replyWithMarkdown(`
-🤖 *Bot Status Report*
+    const features = `
+🤖 *Tohid AI Bot Status Report*
 
 🔄 *Uptime:* ${hours}h ${minutes}m ${seconds}s
-🧠 *Memory:* ${Math.round(memory.rss / 1024 / 1024)}MB
+🧠 *Memory:* ${Math.round(memory.rss / 1024 / 1024)}MB / ${config.MEMORY_LIMIT}MB
 👥 *Version:* 3.0.0
 🌍 *Environment:* ${process.env.NODE_ENV || 'development'}
-✅ *Status:* Operational
-    `);
+
+✅ *Features:*
+• Group Quiz: ${config.GROUP_SETTINGS.ENABLE_GROUP_QUIZ ? '✅' : '❌'}
+• Challenge Mode: ✅
+• Admin Controls: ✅
+• Daily Limits: ✅
+
+📊 *Bot Status:* ${config.ADMIN_SETTINGS.ENABLE_QUIZ ? '✅ Operational' : '❌ Disabled'}
+🔧 *Maintenance:* ${config.ADMIN_SETTINGS.MAINTENANCE_MODE ? '✅ On' : '❌ Off'}
+
+*Use /help for commands list*
+    `;
+    
+    ctx.replyWithMarkdown(features);
   });
 
-  // Callback queries
+  // ========== CALLBACK QUERIES ==========
   bot.on('callback_query', (ctx) => TohidCallbacks.handleCallback(ctx));
 
-  // Text messages
+  // ========== TEXT MESSAGES ==========
   bot.on('text', async (ctx) => {
     const text = ctx.message.text;
     
@@ -199,14 +252,14 @@ function setupBotCommands() {
       '🎮 Start Tohid Quiz', '🏆 Leaderboard', '📜 My History',
       '📊 My Stats', '⭐ About Tohid AI', '🔗 Connect'
     ].includes(text)) {
-      await ctx.reply('🤖 *Tohid AI Main Menu*', {
+      await ctx.reply('🤖 *Tohid AI Main Menu:*', {
         parse_mode: 'Markdown',
         ...TohidKeyboards.mainMenu()
       });
     }
   });
 
-  // Error handling
+  // ========== ERROR HANDLING ==========
   bot.catch((err, ctx) => {
     console.error(`❌ Bot Error for ${ctx.updateType}:`, err);
     try {
@@ -229,6 +282,8 @@ async function startBot() {
     // Start web server for Heroku health checks
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`✅ Web server listening on port ${PORT}`);
+      console.log(`🌐 Health check: http://localhost:${PORT}/health`);
+      console.log(`📊 Status page: http://localhost:${PORT}/status`);
     });
     
     // Setup Heroku features
@@ -239,11 +294,14 @@ async function startBot() {
     console.log('🚀 Launching Telegram Bot...');
     await bot.launch({
       dropPendingUpdates: true,
-      allowedUpdates: ['message', 'callback_query']
+      allowedUpdates: ['message', 'callback_query', 'chat_member']
     });
     
-    console.log('✅ Tohid AI Bot is now running!');
+    console.log('✅ Tohid AI Bot v3.0 is now running!');
     console.log('📱 Bot is ready to receive messages...');
+    console.log('👥 Group Features: ✅ Active');
+    console.log('🛠️ Admin Controls: ✅ Active');
+    console.log('⚔️ Challenge Mode: ✅ Active');
     
     // Enable graceful stop
     const stopBot = () => {

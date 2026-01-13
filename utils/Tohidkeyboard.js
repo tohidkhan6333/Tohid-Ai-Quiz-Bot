@@ -14,6 +14,34 @@ const TohidKeyboards = {
     }
   }),
 
+  // Group Menu (for groups)
+  groupMenu: () => ({
+    reply_markup: {
+      keyboard: [
+        ['🎮 Start Quiz', '👥 Group Quiz'],
+        ['⚔️ Challenge', '🏆 Group Rank'],
+        ['📊 My Stats', '⭐ About']
+      ],
+      resize_keyboard: true,
+      one_time_keyboard: false
+    }
+  }),
+
+  // Admin Menu
+  adminMenu: () => ({
+    reply_markup: {
+      keyboard: [
+        ['✅ Enable Bot', '❌ Disable Bot'],
+        ['🔧 Maintenance', '📊 Admin Stats'],
+        ['👥 Manage Groups', '👤 Manage Users'],
+        ['📢 Broadcast', '🧹 Clear Cache'],
+        ['🔙 Main Menu']
+      ],
+      resize_keyboard: true,
+      one_time_keyboard: false
+    }
+  }),
+
   // Categories
   categories: () => {
     const categories = config.CATEGORIES;
@@ -82,7 +110,7 @@ const TohidKeyboards = {
   // Quiz Answers
   quizAnswers: (answers) => {
     const buttons = answers.map((answer, index) => [
-      { text: answer, callback_data: `answer_${index}` }
+      { text: `${String.fromCharCode(65 + index)}) ${answer}`, callback_data: `answer_${index}` }
     ]);
     
     return {
@@ -136,6 +164,37 @@ const TohidKeyboards = {
         ],
         [
           { text: '🔙 Back to Menu', callback_data: 'back_main' }
+        ]
+      ]
+    }
+  }),
+
+  // Challenge Actions
+  challengeActions: (challengeId) => ({
+    reply_markup: {
+      inline_keyboard: [
+        [
+          { text: '✅ Accept Challenge', callback_data: `challenge_accept_${challengeId}` },
+          { text: '❌ Decline', callback_data: `challenge_decline_${challengeId}` }
+        ]
+      ]
+    }
+  }),
+
+  // Admin Actions
+  adminActions: () => ({
+    reply_markup: {
+      inline_keyboard: [
+        [
+          { text: '📊 View Stats', callback_data: 'admin_stats' },
+          { text: '👥 Manage Users', callback_data: 'admin_users' }
+        ],
+        [
+          { text: '👥 Manage Groups', callback_data: 'admin_groups' },
+          { text: '📢 Broadcast', callback_data: 'admin_broadcast' }
+        ],
+        [
+          { text: '🔙 Main Menu', callback_data: 'back_main' }
         ]
       ]
     }
